@@ -1,0 +1,1 @@
+# inventory_product_node_assignment
