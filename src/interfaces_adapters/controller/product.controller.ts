@@ -37,7 +37,14 @@ export class ProductController extends BaseHttpController {
     @requestBody() newProduct: AddProductViewModel,
     @response() res: express.Response
   ) {
-    return (await this._productService.AddNewProduct(newProduct));
+    let result = await this._productService.AddNewProduct(newProduct);
+    if (result && result.identifiers && result.identifiers.length > 0) {
+      return this.created('/' + String(result.identifiers[0]), result.raw);
+    }
+    else {
+      return this.badRequest();
+    }
+
   }
 
   @httpPost('/addtocart')
@@ -55,6 +62,6 @@ export class ProductController extends BaseHttpController {
   // ) {
   //   return (await this._productService.CheckOut(id));
   // }
-  
+
 
 }

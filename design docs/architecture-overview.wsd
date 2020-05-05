@@ -1,0 +1,23 @@
+@startuml
+
+actor customerApi
+participant productApi
+participant controller
+participant service
+participant typeormRepository
+database datastore
+
+
+customerApi -> productApi : send http request to get all
+productApi -> controller : request recives at '/'
+controller -> service :    GetAllProducts()
+service -> typeormRepository: TypeOrm find()
+typeormRepository -> datastore : check in db
+datastore -> typeormRepository : success response with products
+typeormRepository -> service : resonse recived
+service -> controller: recived data
+controller-> productApi: response send to reverse proxy
+productApi -> customerApi : response recived
+
+
+@enduml
