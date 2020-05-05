@@ -3,8 +3,8 @@ import 'reflect-metadata';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { Container } from 'inversify';
 import { bindings } from './inversify.config';
-import { PipeLineSetUp } from './src/middleware/pipeline-setup';
-import './src/controller/home'
+import './controller/product.controller'
+import { PipeLineSetUp } from './middleware/pipeline-setup';
 
 (async () => {
 

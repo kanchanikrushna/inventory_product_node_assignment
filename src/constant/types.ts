@@ -1,6 +1,8 @@
 const TYPES = {
-    UserService: Symbol.for('UserService'),
-    UserRepository: Symbol.for('UserRepository')
+    ProductService: Symbol.for('ProductService'),
+    ProductRepository: Symbol.for('ProductRepository'),
+    CartRepository: Symbol.for('CarRepository'),
+    GenericRepository: Symbol.for('GenericRepository')
 
 };
 
