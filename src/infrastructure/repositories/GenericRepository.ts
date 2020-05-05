@@ -1,10 +1,11 @@
-import { getConnection } from "typeorm";
+import { getConnection, Connection } from "typeorm";
 import { injectable } from "inversify";
+import { IGenericRepository } from "../../interfaces_adapters/repositories/IGenericRepository";
 
 @injectable()
-export class GenericRepository {
+export class GenericRepository implements IGenericRepository {
 
-   public  getConnection() {
+   public getConnection(): Connection {
         const conn = getConnection();
         return conn;
     }
@@ -13,6 +14,5 @@ export class GenericRepository {
         const movieRepository = this.getConnection().getRepository(T);
         return movieRepository;
     }
-
 
 }

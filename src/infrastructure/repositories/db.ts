@@ -1,6 +1,6 @@
-import { Cart } from './../entities/cart';
+import { Cart } from '../../domain/entities/cart';
 import { createConnection } from "typeorm";
-import { Product } from "../entities/product";
+import { Product } from "../../domain/entities/product";
 
 
 /*
