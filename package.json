@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/node": "^13.13.4",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "inversify": "^5.0.1",
     "inversify-binding-decorators": "^4.0.0",
@@ -33,6 +34,7 @@
     "typeorm": "^0.2.24"
   },
   "devDependencies": {
+    "@types/object-mapper": "^6.2.0",
     "nodemon": "^2.0.3"
   }
 }

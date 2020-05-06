@@ -51,17 +51,18 @@ export class ProductController extends BaseHttpController {
   public async addproducttocart(
     @requestBody() product: AddProductToCartViewModel,
     @response() res: express.Response
-  ) {
-    return (await this._productService.AddProductToCart(product));
+  ){
+     return this.ok(await this._productService.AddProductToCart(product));
   }
 
-  // @httpPost('/checkout/:customerid')
-  // public async checkout(
-  //   @requestParam("customerid") id: number,
-  //   @response() res: express.Response
-  // ) {
-  //   return (await this._productService.CheckOut(id));
-  // }
+  
+  @httpPost('/checkout/:customerid')
+  public async checkout(
+    @requestParam("customerid") id: number,
+    @response() res: express.Response
+  ) {
+    return this.ok(await this._productService.CheckOut(id));
+  }
 
 
 }

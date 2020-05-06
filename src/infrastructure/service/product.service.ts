@@ -7,7 +7,7 @@ import { AddProductToCartViewModel } from '../../domain/viewmodel/addproducttoca
 import { Cart } from '../../domain/entities/cart';
 import { IGenericRepository } from '../../interfaces_adapters/repositories/IGenericRepository';
 import { IProductService } from '../../interfaces_adapters/services/IProductService';
-
+import { OrderInvoiceDetails } from '../../domain/viewmodel/order-invoicedetails';
 
 @injectable()
 export class ProductService implements IProductService {
@@ -48,19 +48,18 @@ export class ProductService implements IProductService {
     });
   }
 
-  public async AddProductToCart(newProduct: AddProductToCartViewModel) {
+  public async AddProductToCart(newProduct: AddProductToCartViewModel): Promise<InsertResult> {
 
     let cartReq = new Cart();
     cartReq.customerid = newProduct.customerid,
       cartReq.productid = newProduct.productid,
       cartReq.quantity = newProduct.quantity;
-    let result = await this._cartRepository.insert(cartReq);
-    return result.identifiers;
+    return await this._cartRepository.insert(cartReq);
   }
 
-  public async CheckOut(customerId: number) {
-    this._genericRepository.getConnection().query('EXEC GetProductById 1').then(x => {
-      console.log(x);
+  public async CheckOut(customerId: number): Promise<OrderInvoiceDetails[]> {
+   return await this._genericRepository.getConnection().query(`EXEC usp_checkout ${customerId}`).then(x => {
+      return x;
     }).catch(err => {
       console.log(err);
     })
